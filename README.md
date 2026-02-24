@@ -1,27 +1,89 @@
-In this DevOps task, you need to build and deploy a full-stack CRUD application using the MEAN stack (MongoDB, Express, Angular 15, and Node.js). The backend will be developed with Node.js and Express to provide REST APIs, connecting to a MongoDB database. The frontend will be an Angular application utilizing HTTPClient for communication.  
+# 🚀 MEAN Stack DevOps Deployment Project
 
-The application will manage a collection of tutorials, where each tutorial includes an ID, title, description, and published status. Users will be able to create, retrieve, update, and delete tutorials. Additionally, a search box will allow users to find tutorials by title.
+## 📌 Project Overview
 
-## Project setup
+This project demonstrates the complete containerization and CI/CD deployment of a full-stack MEAN (MongoDB, Express, Angular, Node.js) application.
 
-### Node.js Server
+The goal of this project is to:
 
-cd backend
+- Containerize frontend and backend applications
+- Use Docker Compose for multi-container orchestration
+- Configure Jenkins CI/CD pipeline
+- Push Docker images to DockerHub
+- Deploy the application on an Ubuntu VM
+- Configure Nginx reverse proxy (Port 80)
 
-npm install
+---
 
-You can update the MongoDB credentials by modifying the `db.config.js` file located in `app/config/`.
+# 🏗️ Project Architecture
 
-Run `node server.js`
+GitHub (myapp32)  
+⬇  
+Jenkins (Agent: manik)  
+⬇  
+Docker Build  
+⬇  
+DockerHub (malik0505)  
+⬇  
+Ubuntu VM (Docker Compose)  
+⬇  
+MongoDB + Backend + Frontend  
+⬇  
+Nginx Reverse Proxy (Port 80)  
+⬇  
+Live Application  
 
-### Angular Client
 
-cd frontend
+---
 
-npm install
 
-Run `ng serve --port 8081`
 
-You can modify the `src/app/services/tutorial.service.ts` file to adjust how the frontend interacts with the backend.
+---
 
-Navigate to `http://localhost:8081/`
+# 🐳 Docker Configuration
+
+## 1️⃣ Backend Dockerfile
+
+- Uses Node.js 18 Alpine
+- Installs dependencies
+- Exposes port 5000
+- Runs server.js
+
+## 2️⃣ Frontend Dockerfile
+
+- Multi-stage build
+- Builds Angular production build
+- Uses Nginx to serve static files
+- Exposes port 80
+
+---
+
+# 🗄️ Docker Compose Configuration
+
+Services included:
+
+- MongoDB (Official Image)
+- Backend
+- Frontend
+- Nginx Reverse Proxy
+
+To run manually:
+
+```bash
+docker-compose up -d
+
+
+
+☁️ Ubuntu VM Setup (AWS / Azure)
+Install Docker
+sudo apt update
+sudo apt install docker.io docker-compose nginx -y
+sudo usermod -aG docker ubuntu
+Clone Repository
+git clone https://github.com/myapp32/mean-crud-devops.git
+cd mean-crud-devops
+Run Application
+docker-compose up -d
+
+
+
